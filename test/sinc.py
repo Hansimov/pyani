@@ -6,7 +6,7 @@ duration= 2 # duration of the animation in seconds (it will loop)
  
 # MAKE A FIGURE WITH MAYAVI
  
-fig_myv = mlab.figure(size=(220,220), bgcolor=(1,1,1))
+fig_myv = mlab.figure(size=(400,400), bgcolor=(1,1,1))
 X, Y = np.linspace(-2,2,200), np.linspace(-2,2,200)
 XX, YY = np.meshgrid(X,Y)
 ZZ = lambda d: np.sinc(XX**2+YY**2)+np.sin(XX+d)
@@ -19,4 +19,4 @@ def make_frame(t):
     return mlab.screenshot(antialiased=True)
  
 animation = mpy.VideoClip(make_frame, duration=duration)
-animation.write_gif("sinc.gif", fps=20)
+animation.write_gif("sinc.gif", fps=10)

@@ -24,5 +24,5 @@ def make_frame(t):
 
 animation = mpy.VideoClip(make_frame, duration=duration).resize(0.5)
 # Video generation takes 10 seconds, GIF generation takes 25s
-animation.write_videofile("wireframe.mp4", fps=20)
-animation.write_gif("wireframe.gif", fps=20)
+animation.write_videofile("wireframe.mp4", fps=10)
+animation.write_gif("wireframe.gif", fps=10)
