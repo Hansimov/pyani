@@ -1,6 +1,24 @@
 # def animate(frameno):
 
-
+def animate():
+    for line in fread:
+        # sleep(0.03)
+        stepData = line.split()
+        if stepData[0] == "piviot":
+            piviotIndex = int(stepData[1])
+            bar[piviotIndex].set_color('g')
+        elif (stepData[0] == "rp" or stepData[0] == "lp"):
+            pointerIndex = int(stepData[1])
+            bar[pointerIndex].set_color('r')
+        elif stepData[0] == "arr":
+            lp = int(stepData[1])
+            rp = int(stepData[2])
+            lph = bar[lp].get_height()
+            rph = bar[rp].get_height()
+            bar[lp].set_height(rph)
+            bar[rp].set_height(lph)
+        else:
+            print(stepData[0])
 
 if __name__ == "__main__":
 
@@ -32,22 +50,9 @@ if __name__ == "__main__":
     piviotIndex = 0
     lp = 0
     rp = 0
-    for line in fread:
-        # sleep(0.03)
-        stepData = line.split()
-        if stepData[0] == "piviot":
-            piviotIndex = int(stepData[1])
-            bar[piviotIndex].set_color('g')
-        elif (stepData[0] == "rp" or stepData[0] == "lp"):
-            pointerIndex = int(stepData[1])
-            bar[pointerIndex].set_color('r')
-        elif stepData[0] == "arr":
-            lp = int(stepData[1])
-            rp = int(stepData[2])
-            lph = bar[lp].get_height()
-            rph = bar[rp].get_height()
-            bar[lp].set_height(rph)
-            bar[rp].set_height(lph)
-        else:
-            print(stepData[0])
+    animate()
+
+    # fig.canvas.draw_idle()
+    # fig.canvas.start_event_loop(interval)
+
     plt.show(block=True)

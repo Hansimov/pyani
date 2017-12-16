@@ -1,21 +1,32 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+from graphics import *
 
-def animate(frameno):
-    x = mu + sigma * np.random.randn(N)
-    n, _ = np.histogram(x, bins, normed=True)
-    for rect, h in zip(patches, n):
-        rect.set_height(h)
-    return patches
 
-N, mu, sigma = 10000, 100, 15
-fig, ax = plt.subplots()
-x = mu + sigma * np.random.randn(N)
-n, bins, patches = plt.hist(x, 50, normed=1, facecolor='green', alpha=0.75)
+def main():
+    win = GraphWin('Face', 200, 150) # give title and dimensions
+    win.yUp() # make right side up coordinates!
 
-frames = 200
-ani = animation.FuncAnimation(fig, animate, blit=True, interval=300,
-                              frames=frames,
-                              repeat=False)
-plt.show()
+    head = Circle(Point(40,100), 25) # set center and radius
+    head.setFill("yellow")
+    head.draw(win)
+
+    eye1 = Circle(Point(30, 105), 5)
+    eye1.setFill('blue')
+    eye1.draw(win)
+
+    eye2 = Line(Point(45, 105), Point(55, 105)) # set endpoints
+    eye2.setWidth(3)
+    eye2.draw(win)
+
+    mouth = Oval(Point(30, 90), Point(50, 85)) # set corners of bounding box
+    mouth.setFill("red")
+    mouth.draw(win)
+
+    label = Text(Point(100, 120), 'A face')
+    label.draw(win)
+
+    message = Text(Point(win.getWidth()/2, 20), 'Click anywhere to quit.')
+    message.draw(win)
+    win.getMouse()
+    win.close()
+
+main()
