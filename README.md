@@ -1,6 +1,6 @@
 ## pyani
 
-Math animations by Python.
+Math animations by Python & TikZ.
 
 Just for personal use.
 
